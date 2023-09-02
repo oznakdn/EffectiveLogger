@@ -1,0 +1,22 @@
+info: 2.09.2023 11:06:17 Information
+dbug: 2.09.2023 11:06:17 Debug
+fail: 2.09.2023 11:06:17 Fail
+warn: 2.09.2023 11:06:17 Warning
+dbug: 2.09.2023 11:11:56 GET - Request started...
+info: 2.09.2023 11:11:56 GET 200 - Request running...
+info: 2.09.2023 11:11:56 Information
+dbug: 2.09.2023 11:11:56 Debug
+fail: 2.09.2023 11:11:56 Fail
+warn: 2.09.2023 11:11:56 Warning
+dbug: 2.09.2023 11:12:50 GET - Request
+info: 2.09.2023 11:12:50 GET 200 - Response
+info: 2.09.2023 11:12:50 Information
+dbug: 2.09.2023 11:12:50 Debug
+fail: 2.09.2023 11:12:50 Fail
+warn: 2.09.2023 11:12:50 Warning
+dbug: 2.09.2023 11:15:10 GET - Request
+info: 2.09.2023 11:15:10 GET 200 - Response
+info: 2.09.2023 11:15:10 Information
+dbug: 2.09.2023 11:15:10 Debug
+fail: 2.09.2023 11:15:10 Fail
+warn: 2.09.2023 11:15:10 Warning
