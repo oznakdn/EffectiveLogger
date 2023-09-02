@@ -48,8 +48,6 @@ public class LogHelper
         file.Close();
     }
 
-
-    //TODO: Context null geliyor
     public void WriteToDatabase(DateTime date, string logLevel, string message)
     {
         _dbContext.Logs.AddRange(new LogModel
