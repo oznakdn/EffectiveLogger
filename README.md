@@ -9,7 +9,6 @@
 #### appsettings.json
 ```csharp
 {
-  "AllowedHosts": "*",
   "LogOption": {
     "WriteToConsole": true , // true or false
     "WriteToFile": true , // true or false
