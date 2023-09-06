@@ -1,8 +1,7 @@
 # Gleeman Effective Logger
+### How To Use?
 
-
-## How To Use?
-### appsettings.json
+#### appsettings.json
 ```csharp
 {
   "AllowedHosts": "*",
@@ -18,7 +17,7 @@
 
 ```
 
-### program.cs
+#### program.cs
 ```csharp
 builder.Logging.ClearProviders();
 builder.Services.AddEffectiveLogger(builder.Configuration, ProviderType.SQLite, nameof(Program)); // Using SQLite
@@ -33,7 +32,7 @@ builder.Logging.ClearProviders();
 builder.Services.AddEffectiveLogger(builder.Configuration, null, null);
 ```
 
-### Middleware or Controller
+#### Middleware or Controller
 
 ##### Middleware
 ```csharp
