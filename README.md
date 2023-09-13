@@ -8,17 +8,14 @@
 
 #### appsettings.json
 ```csharp
-{
-  "LogOption": {
-    "WriteToConsole": true , // true or false
-    "WriteToFile": true , // true or false
-    "WriteToDatabase": true , // true or false
-    "FilePath": "", // your file path here
-    "FileName": "", // file name here
-    "ConnectionString": "" // database connection string here
-  }
+"LogOption": {
+  "WriteToConsole": true, // true or false
+  "WriteToFile": true, // true or false
+  "WriteToDatabase": true, // true or false
+  "FilePath": "", // your file path here
+  "FileName": "", // file name here
+  "ConnectionString": "" // database connection string here
 }
-
 ```
 
 #### program.cs
