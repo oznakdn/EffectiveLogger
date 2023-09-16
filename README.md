@@ -1,8 +1,14 @@
 # Gleeman Effective Logger
 
-[![Nuget version](https://img.shields.io/nuget/v/Gleeman.EffectiveLogger.svg?logo=nuget)](https://www.nuget.org/packages/Gleeman.EffectiveLogger/)
-[![Nuget downloads](https://img.shields.io/nuget/dt/Gleeman.EffectiveLogger?logo=nuget)](https://www.nuget.org/packages/Gleeman.EffectiveLogger/)
-![Build & Test Main](https://github.com/Blazored/LocalStorage/workflows/Build%20&%20Test%20Main/badge.svg)
+| Package |  Version | Popularity |
+| ------- | ----- | ----- |
+| `Gleeman.EffectiveLogger` | [![NuGet](https://img.shields.io/nuget/v/Gleeman.EffectiveLogger.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger) | [![Nuget](https://img.shields.io/nuget/dt/Gleeman.EffectiveLogger.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger)
+<br>
+
+`dotnet` CLI
+```
+> dotnet add package Gleeman.EffectiveLogger --version 1.0.0
+```
 
 ### How To Use?
 
