@@ -2,6 +2,7 @@ using Gleeman.EffectiveLogger.Configuration;
 using Test.Api.Middleware;
 using System.Reflection;
 using Gleeman.EffectiveLogger.SQLite.Configurations;
+using Gleeman.EffectiveLogger.MSSqlServer.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,8 @@ builder.Services.AddScoped<LoggingMiddleware>();
 builder.Logging.ClearProviders();
 
 builder.Services.AddEffentiveLogger(builder.Configuration)
-                .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
+                .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly())
+                .AddMSSqlServerLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 
 
 var app = builder.Build();

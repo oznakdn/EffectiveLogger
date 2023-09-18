@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger.MSSqlServer\Gleeman.EffectiveLogger.MSSqlServer.csproj" />
     <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger.SQLite\Gleeman.EffectiveLogger.SQLite\Gleeman.EffectiveLogger.SQLite.csproj" />
     <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger\Gleeman.EffectiveLogger.csproj" />
   </ItemGroup>
