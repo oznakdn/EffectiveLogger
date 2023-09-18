@@ -4,15 +4,3 @@ info: Information
 dbug: Debug
 fail: Fail
 warn: Warning
-dbug: GET
-info: GET 200
-info: Information
-dbug: Debug
-fail: Fail
-warn: Warning
-dbug: GET
-info: GET 200
-info: Information
-dbug: Debug
-fail: Fail
-warn: Warning

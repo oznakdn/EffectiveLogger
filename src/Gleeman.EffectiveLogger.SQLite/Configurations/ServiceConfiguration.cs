@@ -1,11 +1,4 @@
-﻿using Gleeman.EffectiveLogger.Context;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-using Gleeman.EffectiveLogger.Configuration;
-
-namespace Gleeman.EffectiveLogger.SQLite.Configurations;
+﻿namespace Gleeman.EffectiveLogger.SQLite.Configurations;
 
 public static class ServiceConfiguration
 {

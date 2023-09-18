@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Gleeman.EffectiveLogger\Gleeman.EffectiveLogger.csproj" />
+    <ProjectReference Include="..\Gleeman.EffectiveLogger\Gleeman.EffectiveLogger.csproj" />
   </ItemGroup>
 
 </Project>

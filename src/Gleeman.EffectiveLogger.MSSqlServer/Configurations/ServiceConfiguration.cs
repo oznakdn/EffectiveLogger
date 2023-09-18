@@ -1,11 +1,4 @@
-﻿using Gleeman.EffectiveLogger.Context;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Gleeman.EffectiveLogger.Configuration;
-using System.Reflection;
-
-namespace Gleeman.EffectiveLogger.MSSqlServer.Configurations;
+﻿namespace Gleeman.EffectiveLogger.MSSqlServer.Configurations;
 
 public static class ServiceConfiguration
 {
