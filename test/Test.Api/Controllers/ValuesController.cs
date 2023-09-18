@@ -17,8 +17,8 @@ namespace Test.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            _log.Information("Information");
-            _log.Debug("Debug");
+            _log.Information($"{DateTime.Now} - Information");
+            _log.Debug($"{DateTime.Now} - Debug");
 
             var values = new List<string>()
             {
@@ -28,8 +28,8 @@ namespace Test.Api.Controllers
                 "Value4",
 
             };
-            _log.Fail("Fail");
-            _log.Warning("Warning");
+            _log.Fail($"{DateTime.Now} - Fail");
+            _log.Warning($"{DateTime.Now} - Warning");
 
             return Ok(values);
         }
