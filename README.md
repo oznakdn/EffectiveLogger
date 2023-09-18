@@ -32,7 +32,7 @@
 ```csharp
 builder.Logging.ClearProviders();
 
-builder.Services.AddEffentiveLogger(builder.Configuration)
+builder.Services.AddEffectiveLogger(builder.Configuration)
                 .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly())
                 .AddMSSqlServerLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 
@@ -40,7 +40,7 @@ builder.Services.AddEffentiveLogger(builder.Configuration)
 ##### If you won't use a database for logging
 ```csharp
 builder.Logging.ClearProviders();
-builder.Services.AddEffentiveLogger(builder.Configuration);
+builder.Services.AddEffectiveLogger(builder.Configuration);
 ```
 
 #### Middleware or Controller
