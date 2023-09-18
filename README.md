@@ -1,42 +1,40 @@
 # Gleeman Effective Logger
 
-| Package |  Version | Popularity |
-| ------- | ----- | ----- |
-| `Gleeman.EffectiveLogger` | [![NuGet](https://img.shields.io/nuget/v/Gleeman.EffectiveLogger.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger) | [![Nuget](https://img.shields.io/nuget/dt/Gleeman.EffectiveLogger.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger)
-<br>
-
-`dotnet` CLI
-```
-> dotnet add package Gleeman.EffectiveLogger --version 1.0.0
-```
-
 ### How To Use?
 
 #### appsettings.json
 ```csharp
-"LogOption": {
-  "WriteToConsole": true, // true or false
-  "WriteToFile": true, // true or false
-  "WriteToDatabase": true, // true or false
-  "FilePath": "", // your file path here
-  "FileName": "", // file name here
-  "ConnectionString": "" // database connection string here
+{
+  "LogOptions": {
+    "WriteToFile": true, // true or false
+    "WriteToDatabase": true, // true or false
+    // if WriteToFile is true, you should to write here 'FilePath' and 'FileName'
+    "FilePath": "", 
+    "FileName": "",
+    "DatabaseOptions": {
+      // if WriteToDatabase is true, you should to write here 'connection string'
+      "SQLiteConnectionString": "",
+      "MSSqlServerConectionString": "",
+      "PostgreSqlConnectionString": "",
+      "MySqlConnectionString": ""
+    }
+  }
 }
 ```
 
 #### program.cs
 ```csharp
 builder.Logging.ClearProviders();
-builder.Services.AddEffectiveLogger(builder.Configuration, ProviderType.SQLite, nameof(Program)); // Using SQLite
-builder.Services.AddEffectiveLogger(builder.Configuration, ProviderType.MsSQL, nameof(Program)); // Using MsSQL
-builder.Services.AddEffectiveLogger(builder.Configuration, ProviderType.PostgreSQL, nameof(Program)); // Using PostgreSQL
-builder.Services.AddEffectiveLogger(builder.Configuration, ProviderType.MySQL, nameof(Program)); // Using MySQL 
+
+builder.Services.AddEffentiveLogger(builder.Configuration)
+                .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly())
+                .AddMSSqlServerLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 
 ```
 ##### If you won't use a database for logging
 ```csharp
 builder.Logging.ClearProviders();
-builder.Services.AddEffectiveLogger(builder.Configuration, null, null);
+builder.Services.AddEffentiveLogger(builder.Configuration);
 ```
 
 #### Middleware or Controller
@@ -45,24 +43,24 @@ builder.Services.AddEffectiveLogger(builder.Configuration, null, null);
 ```csharp
 public class LoggingMiddleware : IMiddleware
 {
-    private readonly IEffectiveLogger<LoggingMiddleware> _effectiveLogger;
+    private readonly IEffectiveLog<LoggingMiddleware> _log;
 
-    public LoggingMiddleware(IEffectiveLogger<LoggingMiddleware> effectiveLogger)
+    public LoggingMiddleware(IEffectiveLog<LoggingMiddleware> log)
     {
-        _effectiveLogger = effectiveLogger;
+        _log = log;
     }
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        _effectiveLogger.Debug($"{context.Request.Method} - Request");
+        _log.Debug($"{context.Request.Method}");
         try
         {
-            _effectiveLogger.Information($"{context.Request.Method} {context.Response.StatusCode} - Response");
+            _log.Information($"{context.Request.Method} {context.Response.StatusCode}");
             await next.Invoke(context);
         }
         catch (Exception ex)
         {
-            _effectiveLogger.Fail($"{context.Request.Method} - {ex.Message.ToString()} - Request failed...");
+            _log.Fail($"{context.Request.Method} - {ex.Message.ToString()}");
         }
     }
 }
@@ -70,22 +68,22 @@ public class LoggingMiddleware : IMiddleware
 
 ##### Controller
 ```csharp
- [Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly IEffectiveLogger<ValuesController> _effectiveLogger;
+        private readonly IEffectiveLog<ValuesController> _log;
 
-        public ValuesController(IEffectiveLogger<ValuesController> effectiveLogger)
+        public ValuesController(IEffectiveLog<ValuesController> log)
         {
-            _effectiveLogger = effectiveLogger;
+            _log = log;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            _effectiveLogger.Information("Information");
-            _effectiveLogger.Debug("Debug");
+            _log.Information("Information");
+            _log.Debug("Debug");
 
             var values = new List<string>()
             {
@@ -95,8 +93,8 @@ public class LoggingMiddleware : IMiddleware
                 "Value4",
 
             };
-            _effectiveLogger.Fail("Fail");
-            _effectiveLogger.Warning("Warning");
+            _log.Fail("Fail");
+            _log.Warning("Warning");
 
             return Ok(values);
         }
