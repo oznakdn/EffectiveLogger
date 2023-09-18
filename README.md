@@ -1,5 +1,18 @@
 # Gleeman Effective Logger
 
+| Package |  Version | Popularity |
+| ------- | ----- | ----- |
+| `Gleeman.EffectiveLogger` | [![NuGet](https://img.shields.io/nuget/v/Gleeman.EffectiveLogger.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger/) | [![Nuget](https://img.shields.io/nuget/dt/Gleeman.EffectiveLogger.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger/)
+| `Gleeman.EffectiveLogger.SQLite` | [![NuGet](https://img.shields.io/nuget/v/Gleeman.EffectiveLogger.SQLite.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger.SQLite/) | [![Nuget](https://img.shields.io/nuget/dt/Gleeman.EffectiveLogger.SQLite.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger.SQLite/)
+| `Gleeman.EffectiveLogger.MSSqlServer` | [![NuGet](https://img.shields.io/nuget/v/Gleeman.EffectiveLogger.MSSqlServer.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger.MSSqlServer/) | [![Nuget](https://img.shields.io/nuget/dt/Gleeman.EffectiveLogger.MSSqlServer.svg)](https://www.nuget.org/packages/Gleeman.EffectiveLogger.MSSqlServer/)
+<br>
+
+`dotnet` CLI
+```
+> dotnet add package Gleeman.EffectiveLogger --version 2.0.0
+> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.0
+> dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.0
+```
 ### How To Use?
 
 #### appsettings.json
