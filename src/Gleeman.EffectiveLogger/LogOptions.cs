@@ -8,7 +8,6 @@ public class LogOptions
     public string FilePath { get; set; } = string.Empty;
     public string FileName { get; set; } = string.Empty;
     public DatabaseOptions? DatabaseOptions { get; set; }
-    public string ConnectionString { get; set; } = string.Empty;
 }
 
 public class DatabaseOptions

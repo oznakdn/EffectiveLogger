@@ -12,7 +12,7 @@ internal class DatabaseLog : AbstractLog
     {
         _logContext.Logs.AddRange(new Model.Log
         {
-            LogDate = DateTime.Now,
+            LogDate = DateTime.UtcNow,
             LogLevel = logLevelType.ToString(),
             Message = message
         });
