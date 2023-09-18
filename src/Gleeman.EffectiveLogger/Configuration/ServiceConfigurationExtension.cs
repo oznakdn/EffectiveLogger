@@ -2,7 +2,7 @@
 
 public static class ServiceConfiguration
 {
-    public static IServiceCollection AddEffentiveLogger(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddEffectiveLogger(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<LogOptions>(configuration.GetSection(nameof(LogOptions)));
         services.AddScoped<ILogEvent, LogEvent>();

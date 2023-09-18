@@ -15,7 +15,7 @@ builder.Services.AddScoped<LoggingMiddleware>();
 
 builder.Logging.ClearProviders();
 
-builder.Services.AddEffentiveLogger(builder.Configuration)
+builder.Services.AddEffectiveLogger(builder.Configuration)
                 .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly())
                 .AddMSSqlServerLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 

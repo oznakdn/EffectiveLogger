@@ -8,7 +8,7 @@ public static class ServiceConfiguration
         DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
         string connectionString = configuration.GetValue<string>("LogOptions:DatabaseOptions:SQLiteConnectionString")!;
         services.AddDbContext<LogContext>(option => option.UseSqlite(connectionString, x => x.MigrationsAssembly(assembly.FullName)));
-        services.AddEffentiveLogger(configuration);
+        services.AddEffectiveLogger(configuration);
         return services;
     }
 }
