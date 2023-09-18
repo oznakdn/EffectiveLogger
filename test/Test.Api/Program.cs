@@ -1,24 +1,25 @@
-using Gleeman.EffectiveLogger.Enums;
 using Gleeman.EffectiveLogger.Configuration;
 using Test.Api.Middleware;
+using System.Reflection;
+using Gleeman.EffectiveLogger.SQLite.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddScoped<LoggingMiddleware>();
+
 builder.Logging.ClearProviders();
-builder.Services.AddEffectiveLogger(builder.Configuration, ProviderType.SQLite, nameof(Program));
+
+builder.Services.AddEffentiveLogger(builder.Configuration)
+                .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

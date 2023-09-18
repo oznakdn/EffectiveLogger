@@ -1,27 +1,27 @@
-﻿using Gleeman.EffectiveLogger.Interfaces;
+﻿using Gleeman.EffectiveLogger.Logger;
 
 namespace Test.Api.Middleware;
 
 public class LoggingMiddleware : IMiddleware
 {
-    private readonly IEffectiveLogger<LoggingMiddleware> _effectiveLogger;
+    private readonly IEffectiveLog<LoggingMiddleware> _log;
 
-    public LoggingMiddleware(IEffectiveLogger<LoggingMiddleware> effectiveLogger)
+    public LoggingMiddleware(IEffectiveLog<LoggingMiddleware> log)
     {
-        _effectiveLogger = effectiveLogger;
+        _log = log;
     }
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        _effectiveLogger.Debug($"{context.Request.Method} - Request");
+        _log.Debug($"{context.Request.Method}");
         try
         {
-            _effectiveLogger.Information($"{context.Request.Method} {context.Response.StatusCode} - Response");
+            _log.Information($"{context.Request.Method} {context.Response.StatusCode}");
             await next.Invoke(context);
         }
         catch (Exception ex)
         {
-            _effectiveLogger.Fail($"{context.Request.Method} - {ex.Message.ToString()} - Request failed...");
+            _log.Fail($"{context.Request.Method} - {ex.Message.ToString()}");
         }
     }
 }

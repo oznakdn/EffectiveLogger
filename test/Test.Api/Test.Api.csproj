@@ -12,12 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="LogFile\" />
-    <Folder Include="LogDb\" />
+    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger.SQLite\Gleeman.EffectiveLogger.SQLite\Gleeman.EffectiveLogger.SQLite.csproj" />
+    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger\Gleeman.EffectiveLogger.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger\Gleeman.EffectiveLogger.csproj" />
+    <Folder Include="DataLog\" />
+    <Folder Include="FileLog\" />
   </ItemGroup>
 
 </Project>
