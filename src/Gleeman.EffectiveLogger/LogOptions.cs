@@ -14,7 +14,7 @@ public class LogOptions
 public class DatabaseOptions
 {
     public string SQLiteConnectionString { get; set; } = string.Empty;
-    public string MSSqlConectionString { get; set; } = string.Empty;
+    public string MSSqlServerConectionString { get; set; } = string.Empty;
     public string PostgreSqlConnectionString { get; set; } = string.Empty;
     public string MySqlConnectionString { get; set; } = string.Empty;
 }

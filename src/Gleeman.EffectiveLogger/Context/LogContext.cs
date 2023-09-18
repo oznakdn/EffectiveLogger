@@ -11,7 +11,7 @@ public class LogContext : DbContext
         if (_logOptions.WriteToDatabase == true)
         {
             if (!string.IsNullOrEmpty(_logOptions.DatabaseOptions.SQLiteConnectionString) ||
-                !string.IsNullOrEmpty(_logOptions.DatabaseOptions.MSSqlConectionString) ||
+                !string.IsNullOrEmpty(_logOptions.DatabaseOptions.MSSqlServerConectionString) ||
                 !string.IsNullOrEmpty(_logOptions.DatabaseOptions.PostgreSqlConnectionString) ||
                 !string.IsNullOrEmpty(_logOptions.DatabaseOptions.MySqlConnectionString))
             {

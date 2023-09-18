@@ -23,8 +23,9 @@ public class Logging : ILogging
             _logEvent.LogHandler((s, e) => writeFile.Write(_logOptions.FilePath, _logOptions.FileName, e), $"{levelType.ToString()}: {message}");
         }
 
-        if (_logOptions.WriteToDatabase != null && _logOptions.WriteToDatabase == true && (!string.IsNullOrEmpty(_logOptions.DatabaseOptions.SQLiteConnectionString) ||
-            !string.IsNullOrEmpty(_logOptions.DatabaseOptions.MSSqlConectionString) ||
+        if (_logOptions.WriteToDatabase != null && _logOptions.WriteToDatabase == true && (
+            !string.IsNullOrEmpty(_logOptions.DatabaseOptions.SQLiteConnectionString) ||
+            !string.IsNullOrEmpty(_logOptions.DatabaseOptions.MSSqlServerConectionString) ||
             !string.IsNullOrEmpty(_logOptions.DatabaseOptions.PostgreSqlConnectionString) ||
             !string.IsNullOrEmpty(_logOptions.DatabaseOptions.MySqlConnectionString)))
         {
