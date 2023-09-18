@@ -2,9 +2,11 @@
 
 `dotnet` CLI
 ```
-> dotnet add package Gleeman.EffectiveLogger --version 2.0.1
+> dotnet add package Gleeman.EffectiveLogger --version 2.0.2
 > dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.1
 > dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.1
+> dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.1
+
 ```
 ### How To Use?
 
@@ -29,14 +31,27 @@
 ```
 
 #### program.cs
+##### Logging to SQLite
 ```csharp
 builder.Logging.ClearProviders();
-
 builder.Services.AddEffectiveLogger(builder.Configuration)
-                .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly())
-                .AddMSSqlServerLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
-
+                .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 ```
+##### Logging to MSSqlServer
+```csharp
+builder.Logging.ClearProviders();
+builder.Services.AddEffectiveLogger(builder.Configuration)
+                .AddMSSqlServerLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
+```
+
+##### Logging to PostgreSql
+```csharp
+builder.Logging.ClearProviders();
+builder.Services.AddEffectiveLogger(builder.Configuration)
+                .AddPostgreSqlLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
+```
+
+
 ##### If you won't use a database for logging
 ```csharp
 builder.Logging.ClearProviders();
