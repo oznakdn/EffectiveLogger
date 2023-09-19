@@ -6,7 +6,7 @@ public static class ServiceConfiguration
     {
 
         DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
-        string connectionString = configuration.GetValue<string>("LogOptions:DatabaseOptions:MSSqlConectionString")!;
+        string connectionString = configuration.GetValue<string>("LogOptions:DatabaseOptions:MSSqlServerConectionString")!;
         services.AddDbContext<LogContext>(option => option.UseSqlServer(connectionString, x => x.MigrationsAssembly(assembly.FullName)));
         services.AddEffectiveLogger(configuration);
         return services;
