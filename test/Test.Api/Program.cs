@@ -4,6 +4,7 @@ using Gleeman.EffectiveLogger.Configuration;
 using Gleeman.EffectiveLogger.SQLite.Configurations;
 using Gleeman.EffectiveLogger.MSSqlServer.Configurations;
 using Gleeman.EffectiveLogger.PostgreSQL.Configurations;
+using Gleeman.EffectiveLogger.MySQL.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,8 @@ builder.Logging.ClearProviders();
 builder.Services.AddEffectiveLogger(builder.Configuration)
                 //.AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
                 //.AddMSSqlServerLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly())
-                .AddPostgreSqlLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
+                //.AddPostgreSqlLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly())
+                .AddMySqlLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
 
 
 var app = builder.Build();
