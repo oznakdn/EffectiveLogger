@@ -52,8 +52,16 @@ builder.Services.AddEffectiveLogger(builder.Configuration)
                 .AddPostgreSqlLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 ```
 
+##### Logging to MySQL
+```csharp
+builder.Logging.ClearProviders();
 
-##### If you won't use a database for logging
+builder.Services.AddEffectiveLogger(builder.Configuration)
+                .AddMySqlLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
+```
+
+
+##### Only console and file logging is possible
 ```csharp
 builder.Logging.ClearProviders();
 builder.Services.AddEffectiveLogger(builder.Configuration);
