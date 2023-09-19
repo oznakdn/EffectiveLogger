@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>Logging to MSSqlServer database</Title>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
     <Description>Logging to MSSqlServer database</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/oznakdn/EffectiveLogger</RepositoryUrl>
