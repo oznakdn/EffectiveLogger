@@ -2,7 +2,6 @@
 
 `dotnet` CLI
 ```
-> dotnet add package Gleeman.EffectiveLogger --version 2.0.3
 > dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.1
 > dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.2
 > dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.1
@@ -32,39 +31,32 @@
 ```
 
 #### program.cs
-##### Logging to SQLite
+##### Logging to SQLite with console and file log
 ```csharp
 builder.Logging.ClearProviders();
 builder.Services.AddEffectiveLogger(builder.Configuration)
                 .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 ```
-##### Logging to MSSqlServer
+##### Logging to MSSqlServer with console and file log
 ```csharp
 builder.Logging.ClearProviders();
 builder.Services.AddEffectiveLogger(builder.Configuration)
                 .AddMSSqlServerLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 ```
 
-##### Logging to PostgreSql
+##### Logging to PostgreSql with console and file log
 ```csharp
 builder.Logging.ClearProviders();
 builder.Services.AddEffectiveLogger(builder.Configuration)
                 .AddPostgreSqlLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
 ```
 
-##### Logging to MySQL
+##### Logging to MySQL with console and file log
 ```csharp
 builder.Logging.ClearProviders();
 
 builder.Services.AddEffectiveLogger(builder.Configuration)
                 .AddMySqlLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
-```
-
-
-##### Only console and file logging is possible
-```csharp
-builder.Logging.ClearProviders();
-builder.Services.AddEffectiveLogger(builder.Configuration);
 ```
 
 #### Middleware or Controller
