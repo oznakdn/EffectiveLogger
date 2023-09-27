@@ -2,66 +2,66 @@
 
 `dotnet` CLI
 ```
-> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.1
-> dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.2
-> dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.1
-> dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.1
+> dotnet add package Gleeman.EffectiveLogger.File --version 2.0.0
+> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.2
+> dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.3
+> dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.2
+> dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.2
 
 ```
-### How To Use?
-
-#### appsettings.json
-```csharp
-{
-  "LogOptions": {
-    "WriteToFile": true, // true or false
-    "WriteToDatabase": true, // true or false
-    // if WriteToFile is true, you should to write here 'FilePath' and 'FileName'
-    "FilePath": "", 
-    "FileName": "",
-    "DatabaseOptions": {
-      // if WriteToDatabase is true, you should to write here 'connection string'
-      "SQLiteConnectionString": "",
-      "MSSqlServerConectionString": "",
-      "PostgreSqlConnectionString": "",
-      "MySqlConnectionString": ""
-    }
-  }
-}
-```
+## How To Use?
 
 #### program.cs
-##### Logging to SQLite with console and file log
-```csharp
-builder.Logging.ClearProviders();
-builder.Services.AddEffectiveLogger(builder.Configuration)
-                .AddSQLiteLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
-```
-##### Logging to MSSqlServer with console and file log
-```csharp
-builder.Logging.ClearProviders();
-builder.Services.AddEffectiveLogger(builder.Configuration)
-                .AddMSSqlServerLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
-```
 
-##### Logging to PostgreSql with console and file log
+##### Logging to console and file log
 ```csharp
-builder.Logging.ClearProviders();
-builder.Services.AddEffectiveLogger(builder.Configuration)
-                .AddPostgreSqlLog(builder.Configuration, assembly: Assembly.GetExecutingAssembly());
+builder.Services.AddFileLog(option =>
+{
+    option.FilePath = "C:\\Users\\USER\\Desktop\\EffectiveMapper\\test\\Test.Api\\FileLog";
+    option.FileName = "Test";
+});
+```
+##### Logging to MSSqlServer
+```csharp
+builder.Services.AddMSSqlServerLog(options =>
+{
+    options.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LogDb;Integrated Security=True;Trust Server Certificate=False;";
+    options.Assembly = Assembly.GetExecutingAssembly();
+});
 ```
 
-##### Logging to MySQL with console and file log
+##### Logging to PostgreSql
 ```csharp
-builder.Logging.ClearProviders();
-
-builder.Services.AddEffectiveLogger(builder.Configuration)
-                .AddMySqlLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
+builder.Services.AddPostgreSqlLog(options =>
+{
+    options.ConnectionString = "Server=localhost;Port=5432;Database=LogDb;UserId=postgre;Password=postgre123;";
+    options.Assembly = Assembly.GetExecutingAssembly();
+});
 ```
 
-#### Middleware or Controller
+##### Logging to MySql
+```csharp
+builder.Services.AddMySqlLog(options =>
+{
+   options.ConnectionString = "Server=localhost;Port=3306;Database=LogDb;user=root;password=123456;";
+   options.Assembly = Assembly.GetExecutingAssembly();
+});
+```
+##### Logging to Console, File and Database
+```csharp
+builder.Services.AddFileLog(option =>
+{
+    option.FilePath = "C:\\Users\\USER\\Desktop\\EffectiveMapper\\test\\Test.Api\\FileLog";
+    option.FileName = "Test";
+}).AddMSSqlServerLog(options =>
+{
+    options.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LogDb;Integrated Security=True;Trust Server Certificate=False;";
+    options.Assembly = Assembly.GetExecutingAssembly();
+});
+```
 
-##### Middleware
+
+### Middleware
 ```csharp
 public class LoggingMiddleware : IMiddleware
 {
@@ -74,52 +74,30 @@ public class LoggingMiddleware : IMiddleware
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        _log.Debug($"{context.Request.Method}");
         try
         {
-            _log.Information($"{context.Request.Method} {context.Response.StatusCode}");
+            _log.Information($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Debug($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Fail($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Warning($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+
             await next.Invoke(context);
         }
         catch (Exception ex)
         {
-            _log.Fail($"{context.Request.Method} - {ex.Message.ToString()}");
+           _log.Fail($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode} - {ex.Message}");
         }
     }
 }
 ```
+### Console Screen
+![Console](https://github.com/oznakdn/EffectiveLogger/assets/79724084/3bf0e989-643e-4652-825d-8634d19b75c5)
 
-##### Controller
-```csharp
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ValuesController : ControllerBase
-    {
-        private readonly IEffectiveLog<ValuesController> _log;
+### File Screen
+![File](https://github.com/oznakdn/EffectiveLogger/assets/79724084/186199f3-f36e-4683-8911-823dd70f1d9f)
 
-        public ValuesController(IEffectiveLog<ValuesController> log)
-        {
-            _log = log;
-        }
+### Database Screen
+![Database](https://github.com/oznakdn/EffectiveLogger/assets/79724084/f7235067-10a9-462f-9b24-d44db017b653)
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            _log.Information("Information");
-            _log.Debug("Debug");
 
-            var values = new List<string>()
-            {
-                "Value1",
-                "Value2",
-                "Value3",
-                "Value4",
 
-            };
-            _log.Fail("Fail");
-            _log.Warning("Warning");
-
-            return Ok(values);
-        }
-    }
-
-```
