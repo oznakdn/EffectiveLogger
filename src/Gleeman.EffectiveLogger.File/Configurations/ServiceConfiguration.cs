@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Gleeman.EffectiveLogger.Configuration;
-namespace Gleeman.EffectiveLogger.File.Configurations;
+﻿namespace Gleeman.EffectiveLogger.File.Configurations;
 
 public static class ServiceConfiguration
 {
