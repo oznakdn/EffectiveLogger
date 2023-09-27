@@ -1,0 +1,4 @@
+info: 27.09.2023 23:50:28 - GET - /api/Values - 200
+dbug: 27.09.2023 23:50:29 - GET - /api/Values - 200
+fail: 27.09.2023 23:50:29 - GET - /api/Values - 200
+warn: 27.09.2023 23:50:29 - GET - /api/Values - 200

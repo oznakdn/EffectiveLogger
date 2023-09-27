@@ -1,19 +1,20 @@
-﻿namespace Gleeman.EffectiveLogger.Context;
+﻿using Gleeman.EffectiveLogger.Configuration;
+
+namespace Gleeman.EffectiveLogger.Context;
 
 public class LogContext : DbContext
 {
-    private readonly LogOptions _logOptions;
-    public LogContext(DbContextOptions<LogContext> options, IOptions<LogOptions> logOption) : base(options)
+    
+    public LogContext(DbContextOptions<LogContext> options) : base(options)
     {
-        _logOptions = logOption.Value;
 
-
-        if (_logOptions.WriteToDatabase == true)
+        LogOptions logOptions = ServiceConfiguration.LogOptions;
+        if (logOptions.WriteToDatabase == true)
         {
-            if (!string.IsNullOrEmpty(_logOptions.DatabaseOptions.SQLiteConnectionString) ||
-                !string.IsNullOrEmpty(_logOptions.DatabaseOptions.MSSqlServerConectionString) ||
-                !string.IsNullOrEmpty(_logOptions.DatabaseOptions.PostgreSqlConnectionString) ||
-                !string.IsNullOrEmpty(_logOptions.DatabaseOptions.MySqlConnectionString))
+            if (!string.IsNullOrEmpty(logOptions.DatabaseOptions!.SQLiteConnectionString) ||
+                !string.IsNullOrEmpty(logOptions.DatabaseOptions.MSSqlServerConectionString) ||
+                !string.IsNullOrEmpty(logOptions.DatabaseOptions.PostgreSqlConnectionString) ||
+                !string.IsNullOrEmpty(logOptions.DatabaseOptions.MySqlConnectionString))
             {
                 Database.EnsureCreated();
             }

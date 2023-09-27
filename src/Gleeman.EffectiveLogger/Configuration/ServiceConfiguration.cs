@@ -2,9 +2,16 @@
 
 public static class ServiceConfiguration
 {
-    public static IServiceCollection AddEffectiveLogger(this IServiceCollection services, IConfiguration configuration)
+    public static LogOptions LogOptions;
+
+    static ServiceConfiguration()
     {
-        services.Configure<LogOptions>(configuration.GetSection(nameof(LogOptions)));
+        LogOptions = new LogOptions();
+        LogOptions.DatabaseOptions = new DatabaseOptions();
+    }
+    public static IServiceCollection AddEffectiveLogger(this IServiceCollection services, Action<LogOptions>logOptions)
+    {
+        logOptions.Invoke(LogOptions);
         services.AddTransient<ILogEvent, LogEvent>();
         services.AddTransient<ILogFactory, LogFactory>();
         services.AddTransient<ILogging, Logging>();

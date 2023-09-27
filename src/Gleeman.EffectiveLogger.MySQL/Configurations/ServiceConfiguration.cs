@@ -2,13 +2,23 @@
 
 public static class ServiceConfiguration
 {
-    public static IServiceCollection AddMySqlLog(this IServiceCollection services, IConfiguration configuration, Assembly assembly)
+    public static IServiceCollection AddMySqlLog(this IServiceCollection services, Action<DatabaseOptions> options)
     {
 
-        DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
-        string connectionString = configuration.GetValue<string>("LogOptions:DatabaseOptions:MySqlConnectionString")!;
-        services.AddDbContext<LogContext>(option => option.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString), x => x.MigrationsAssembly(assembly.FullName)));
-        services.AddEffectiveLogger(configuration);
+        DatabaseOptions databaseOptions = new();
+        options.Invoke(databaseOptions);
+
+        LogOptions logOptions = Gleeman.EffectiveLogger.Configuration.ServiceConfiguration.LogOptions;
+
+        logOptions.WriteToDatabase = true;
+        logOptions.DatabaseOptions!.MySqlConnectionString = databaseOptions.ConnectionString;
+
+        services.AddEffectiveLogger(option => option = logOptions);
+
+        services.AddDbContext<LogContext>(option => option.UseMySql(logOptions.DatabaseOptions.MySqlConnectionString, 
+            ServerVersion.AutoDetect(databaseOptions.ConnectionString),
+            x => x.MigrationsAssembly(databaseOptions.Assembly.FullName)));
+
         return services;
     }
 }

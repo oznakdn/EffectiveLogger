@@ -1,5 +1,4 @@
-﻿using Gleeman.EffectiveLogger.Logger;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Test.Api.Controllers
 {
@@ -7,19 +6,11 @@ namespace Test.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly IEffectiveLog<ValuesController> _log;
-
-        public ValuesController(IEffectiveLog<ValuesController> log)
-        {
-            _log = log;
-        }
 
         [HttpGet]
         public IActionResult Get()
         {
-            _log.Information($"{DateTime.Now} - Information");
-            _log.Debug($"{DateTime.Now} - Debug");
-
+           
             var values = new List<string>()
             {
                 "Value1",
@@ -28,9 +19,7 @@ namespace Test.Api.Controllers
                 "Value4",
 
             };
-            _log.Fail($"{DateTime.Now} - Fail");
-            _log.Warning($"{DateTime.Now} - Warning");
-
+         
             return Ok(values);
         }
     }

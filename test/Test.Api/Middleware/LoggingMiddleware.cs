@@ -13,15 +13,19 @@ public class LoggingMiddleware : IMiddleware
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        _log.Debug($"{DateTime.Now} - {context.Request.Method}");
         try
         {
-            _log.Information($"{DateTime.Now} - {context.Request.Method} {context.Response.StatusCode}");
+            _log.Information($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Debug($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Fail($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Warning($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+
             await next.Invoke(context);
         }
         catch (Exception ex)
         {
-            _log.Fail($"{DateTime.Now} - {context.Request.Method} - {ex.Message.ToString()}");
+            
+            _log.Fail($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode} - {ex.Message}");
         }
     }
 }
