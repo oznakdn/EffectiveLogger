@@ -15,6 +15,8 @@
 
 // If WriteToFile and WriteToDatabase are false, only logging is done to the console.
 // If WriteToFile and WriteToDatabase are true, logging are done to the Console,File and Database
+// If WriteToFile is true and WriteToDatabase is false, logging are done to the Console and File
+
 {
   "LogOptions": {
     "WriteToFile": true,
