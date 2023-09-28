@@ -2,63 +2,32 @@
 
 `dotnet` CLI
 ```
-> dotnet add package Gleeman.EffectiveLogger.File --version 2.0.0
-> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.2
-> dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.3
-> dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.2
-> dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.2
+> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.1
+> dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.2
+> dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.1
+> dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.1
 
 ```
-## How To Use?
+# How To Use?
 
-#### program.cs
-
-##### Logging to console and file log
+### Program.cs
+#### Logging to SQLite
 ```csharp
-builder.Services.AddFileLog(option =>
-{
-    option.FilePath = "C:\\Users\\USER\\Desktop\\EffectiveMapper\\test\\Test.Api\\FileLog";
-    option.FileName = "Test";
-});
+builder.Services.AddSQLiteLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
 ```
-##### Logging to MSSqlServer
+#### Logging to MSSQLServer
 ```csharp
-builder.Services.AddMSSqlServerLog(options =>
-{
-    options.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LogDb;Integrated Security=True;Trust Server Certificate=False;";
-    options.Assembly = Assembly.GetExecutingAssembly();
-});
+builder.Services.AddMSSqlServerLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
 ```
-
-##### Logging to PostgreSql
+#### Logging to MySQL
 ```csharp
-builder.Services.AddPostgreSqlLog(options =>
-{
-    options.ConnectionString = "Server=localhost;Port=5432;Database=LogDb;UserId=postgre;Password=postgre123;";
-    options.Assembly = Assembly.GetExecutingAssembly();
-});
+builder.Services.AddMySqlLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
 ```
-
-##### Logging to MySql
+#### Logging to PostgreSQL
 ```csharp
-builder.Services.AddMySqlLog(options =>
-{
-   options.ConnectionString = "Server=localhost;Port=3306;Database=LogDb;user=root;password=123456;";
-   options.Assembly = Assembly.GetExecutingAssembly();
-});
+builder.Services.AddPostgreSqlLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
 ```
-##### Logging to Console, File and Database
-```csharp
-builder.Services.AddFileLog(option =>
-{
-    option.FilePath = "C:\\Users\\USER\\Desktop\\EffectiveMapper\\test\\Test.Api\\FileLog";
-    option.FileName = "Test";
-}).AddMSSqlServerLog(options =>
-{
-    options.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LogDb;Integrated Security=True;Trust Server Certificate=False;";
-    options.Assembly = Assembly.GetExecutingAssembly();
-});
-```
+<hr>
 
 
 ### Middleware
