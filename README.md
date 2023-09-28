@@ -10,6 +10,28 @@
 ```
 # How To Use?
 
+### appsettings.json
+```csharp
+
+// If WriteToFile and WriteToDatabase are false, only logging is done to the console.
+// If WriteToFile and WriteToDatabase are true, logging are done to the Console,File and Database
+{
+  "LogOptions": {
+    "WriteToFile": true,
+    "WriteToDatabase": true,
+    "FilePath": "", 
+    "FileName": "",
+    "DatabaseOptions": {
+      "SQLiteConnectionString": "",
+      "MSSqlServerConectionString": "",
+      "PostgreSqlConnectionString": "",
+      "MySqlConnectionString": ""
+    }
+  }
+}
+```
+<hr>
+
 ### Program.cs
 #### Logging to SQLite
 ```csharp
