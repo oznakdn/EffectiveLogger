@@ -1,12 +1,6 @@
 # Gleeman Effective Logger
 
-`dotnet` CLI
-```
-> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
-> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
-```
 
-<hr>
 # How To Use?
 
 ### Logging to SQLite
