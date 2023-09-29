@@ -2,54 +2,90 @@
 
 `dotnet` CLI
 ```
-> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.1
-> dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.2
-> dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.1
-> dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.1
-
+> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
+> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
 ```
+
+<hr>
 # How To Use?
 
-### appsettings.json
+### Logging to SQLite
+#### Install packages
+`dotnet` CLI
+```
+> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
+> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+```
+#### Program.cs
 ```csharp
-
-// If WriteToFile and WriteToDatabase are false, only logging is done to the console.
-// If WriteToFile and WriteToDatabase are true, logging are done to the Console,File and Database
-// If WriteToFile is true and WriteToDatabase is false, logging are done to the Console and File
-
+builder.Services.AddSQLiteLog(options =>
 {
-  "LogOptions": {
-    "WriteToFile": true,
-    "WriteToDatabase": true,
-    "FilePath": "", 
-    "FileName": "",
-    "DatabaseOptions": {
-      "SQLiteConnectionString": "",
-      "MSSqlServerConectionString": "",
-      "PostgreSqlConnectionString": "",
-      "MySqlConnectionString": ""
-    }
-  }
-}
+    options.ConnectionString = "Connection string is here";
+    options.WriteToFile = true;
+    options.WriteToConsole = true;
+    options.FilePath = "File path is here";
+    options.FileName = "File name is here";
+    options.MigrationAssembly = Assembly.GetExecutingAssembly();
+});
 ```
-<hr>
 
-### Program.cs
-#### Logging to SQLite
-```csharp
-builder.Services.AddSQLiteLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
+### Logging to MSSQLServer
+#### Install packages
+`dotnet` CLI
 ```
-#### Logging to MSSQLServer
-```csharp
-builder.Services.AddMSSqlServerLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
+> dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.5
+> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
 ```
-#### Logging to MySQL
 ```csharp
-builder.Services.AddMySqlLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
+builder.Services.AddMSSqlServerLog(options =>
+{
+    options.ConnectionString = "Connection string is here";
+    options.WriteToFile = true;
+    options.WriteToConsole = true;
+    options.FilePath = "File path is here";
+    options.FileName = "File name is here";
+    options.MigrationAssembly = Assembly.GetExecutingAssembly();
+});
 ```
-#### Logging to PostgreSQL
+
+### Logging to MySQL
+#### Install packages
+`dotnet` CLI
+```
+> dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.5
+> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+```
+
 ```csharp
-builder.Services.AddPostgreSqlLog(builder.Configuration,assembly:Assembly.GetExecutingAssembly());
+builder.Services.AddMySqlLog(options =>
+{
+    options.ConnectionString = "Connection string is here";
+    options.WriteToFile = true;
+    options.WriteToConsole = true;
+    options.FilePath = "File path is here";
+    options.FileName = "File name is here";
+    options.MigrationAssembly = Assembly.GetExecutingAssembly();
+});
+```
+
+### Logging to PostgreSQL
+#### Install packages
+`dotnet` CLI
+```
+> dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.5
+> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+```
+
+```csharp
+builder.Services.AddPostgreSqlLog(options =>
+{
+    options.ConnectionString = "Connection string is here";
+    options.WriteToFile = true;
+    options.WriteToConsole = true;
+    options.FilePath = "File path is here";
+    options.FileName = "File name is here";
+    options.MigrationAssembly = Assembly.GetExecutingAssembly();
+});
 ```
 <hr>
 

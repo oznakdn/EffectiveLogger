@@ -2,21 +2,18 @@
 
 public static class ServiceConfiguration
 {
-    public static IServiceCollection AddSQLiteLog(this IServiceCollection services, Action<DatabaseOptions> options)
+    public static IServiceCollection AddSQLiteLog(this IServiceCollection services, Action<LogOptions> options)
     {
 
-        DatabaseOptions databaseOptions = new();
-        options.Invoke(databaseOptions);
+        var logOptions = Configuration.ServiceConfiguration.LogOptions;
+        options.Invoke(logOptions);
 
-        LogOptions logOptions = Gleeman.EffectiveLogger.Configuration.ServiceConfiguration.LogOptions;
+        Configuration.ServiceConfiguration.AddLoggerService(services, option => option = logOptions);
 
-        logOptions.WriteToDatabase = true;
-        logOptions.DatabaseOptions!.SQLiteConnectionString = databaseOptions.ConnectionString;
+        services.AddDbContext<LogContext>(option => option.UseSqlite(logOptions.ConnectionString,
+       x => x.MigrationsAssembly(logOptions.MigrationAssembly!.FullName)));
 
-        services.AddEffectiveLogger(option => option = logOptions);
 
-        services.AddDbContext<LogContext>(option => option.UseSqlite(logOptions.DatabaseOptions.SQLiteConnectionString, 
-            x => x.MigrationsAssembly(databaseOptions.Assembly.FullName)));
         return services;
     }
 }

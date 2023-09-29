@@ -7,9 +7,8 @@ public static class ServiceConfiguration
     static ServiceConfiguration()
     {
         LogOptions = new LogOptions();
-        LogOptions.DatabaseOptions = new DatabaseOptions();
     }
-    public static IServiceCollection AddEffectiveLogger(this IServiceCollection services, Action<LogOptions>logOptions)
+    public static IServiceCollection AddLoggerService(this IServiceCollection services, Action<LogOptions>logOptions)
     {
         logOptions.Invoke(LogOptions);
         services.AddTransient<ILogEvent, LogEvent>();

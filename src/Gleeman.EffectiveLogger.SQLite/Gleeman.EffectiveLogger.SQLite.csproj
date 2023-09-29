@@ -4,13 +4,13 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>2.0.2</Version>
+    <Version>2.0.5</Version>
     <Description>Logging to SQLite database</Description>
     <Title>Logging to SQLite database</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/oznakdn/EffectiveLogger</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Log, Logging, Logger, Database Log</PackageTags>
+    <PackageTags>Log, Logging, Logger, DatabaseLog</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 

@@ -5,12 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>Logging to PostgreSql database</Title>
-    <Version>2.0.2</Version>
+    <Version>2.0.5</Version>
     <Description>Logging to PostgreSql database</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/oznakdn/EffectiveLogger</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Log,Logger, Database Logger</PackageTags>
+    <PackageTags>Log,Logger, DatabaseLogger</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 

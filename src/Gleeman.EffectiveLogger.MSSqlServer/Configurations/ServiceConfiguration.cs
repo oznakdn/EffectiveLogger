@@ -2,22 +2,17 @@
 
 public static class ServiceConfiguration
 {
-    public static IServiceCollection AddMSSqlServerLog(this IServiceCollection services, Action<DatabaseOptions> options)
+    public static IServiceCollection AddMSSqlServerLog(this IServiceCollection services, Action<LogOptions> options)
     {
 
+        var logOptions = Configuration.ServiceConfiguration.LogOptions;
+        options.Invoke(logOptions);
+        Configuration.ServiceConfiguration.AddLoggerService(services, option => option = logOptions);
 
-        DatabaseOptions databaseOptions = new();
-        options.Invoke(databaseOptions);
+        services.AddLoggerService(option => option = logOptions);
 
-        LogOptions logOptions = Gleeman.EffectiveLogger.Configuration.ServiceConfiguration.LogOptions;
-
-        logOptions.WriteToDatabase = true;
-        logOptions.DatabaseOptions.MSSqlServerConectionString = databaseOptions.ConnectionString;
-
-        services.AddEffectiveLogger(option => option = logOptions);
-
-        services.AddDbContext<LogContext>(option => option.UseSqlServer(logOptions.DatabaseOptions.MSSqlServerConectionString, 
-            x => x.MigrationsAssembly(databaseOptions.Assembly.FullName)));
+        services.AddDbContext<LogContext>(option => option.UseSqlServer(logOptions.ConnectionString, 
+            x => x.MigrationsAssembly(logOptions.MigrationAssembly.FullName)));
         return services;
     }
 }

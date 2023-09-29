@@ -2,21 +2,16 @@
 
 public static class ServiceConfiguration
 {
-    public static IServiceCollection AddPostgreSqlLog(this IServiceCollection services, Action<DatabaseOptions> options)
+    public static IServiceCollection AddPostgreSqlLog(this IServiceCollection services, Action<LogOptions> options)
     {
 
-        DatabaseOptions databaseOptions = new();
-        options.Invoke(databaseOptions);
+        var logOptions = Configuration.ServiceConfiguration.LogOptions;
+        options.Invoke(logOptions);
 
-        LogOptions logOptions = Gleeman.EffectiveLogger.Configuration.ServiceConfiguration.LogOptions;
+        Configuration.ServiceConfiguration.AddLoggerService(services, option => option = logOptions);
 
-        logOptions.WriteToDatabase = true;
-        logOptions.DatabaseOptions!.PostgreSqlConnectionString = databaseOptions.ConnectionString;
-
-        services.AddEffectiveLogger(option => option = logOptions);
-
-        services.AddDbContext<LogContext>(option => option.UseNpgsql(logOptions.DatabaseOptions.PostgreSqlConnectionString,
-            x => x.MigrationsAssembly(databaseOptions.Assembly.FullName)));
+        services.AddDbContext<LogContext>(option => option.UseNpgsql(logOptions.ConnectionString,
+            x => x.MigrationsAssembly(logOptions.MigrationAssembly.FullName)));
         
         return services;
     }

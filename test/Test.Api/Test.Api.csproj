@@ -12,15 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger.File\Gleeman.EffectiveLogger.File.csproj" />
-    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger.MSSqlServer\Gleeman.EffectiveLogger.MSSqlServer.csproj" />
-    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger.MySQL\Gleeman.EffectiveLogger.MySQL.csproj" />
-    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger.PostgreSQL\Gleeman.EffectiveLogger.PostgreSQL.csproj" />
-    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger.SQLite\Gleeman.EffectiveLogger.SQLite.csproj" />
+    <Folder Include="DataLog\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataLog\" />
+    <ProjectReference Include="..\..\src\Gleeman.EffectiveLogger.SQLite\Gleeman.EffectiveLogger.SQLite.csproj" />
   </ItemGroup>
 
 </Project>
