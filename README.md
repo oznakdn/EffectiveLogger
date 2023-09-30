@@ -1,16 +1,17 @@
 # Gleeman Effective Logger
 
 
-# How To Use?
-
-### Logging to SQLite
+## Logging to SQLite
 #### Install packages
 `dotnet` CLI
 ```
-> dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
-> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger --version 2.0.5
 ```
 #### Program.cs
+```csharp
+using Gleeman.EffectiveLogger.SQLite.Configurations;
+```
 ```csharp
 builder.Services.AddSQLiteLog(options =>
 {
@@ -23,12 +24,18 @@ builder.Services.AddSQLiteLog(options =>
 });
 ```
 
-### Logging to MSSQLServer
+<hr>
+
+## Logging to MSSQLServer
 #### Install packages
 `dotnet` CLI
 ```
-> dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.5
-> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+```
+#### Program.cs
+```csharp
+using Gleeman.EffectiveLogger.MSSqlServer.Configurations;
 ```
 ```csharp
 builder.Services.AddMSSqlServerLog(options =>
@@ -41,15 +48,19 @@ builder.Services.AddMSSqlServerLog(options =>
     options.MigrationAssembly = Assembly.GetExecutingAssembly();
 });
 ```
+<hr>
 
-### Logging to MySQL
+## Logging to MySQL
 #### Install packages
 `dotnet` CLI
 ```
-> dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.5
-> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger --version 2.0.5
 ```
-
+#### Program.cs
+```csharp
+using Gleeman.EffectiveLogger.MySQL.Configurations;
+```
 ```csharp
 builder.Services.AddMySqlLog(options =>
 {
@@ -61,15 +72,19 @@ builder.Services.AddMySqlLog(options =>
     options.MigrationAssembly = Assembly.GetExecutingAssembly();
 });
 ```
+<hr>
 
-### Logging to PostgreSQL
+## Logging to PostgreSQL
 #### Install packages
 `dotnet` CLI
 ```
-> dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.5
-> dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger --version 2.0.5
 ```
-
+#### Program.cs
+```csharp
+using Gleeman.EffectiveLogger.PostgreSQL.Configurations;
+```
 ```csharp
 builder.Services.AddPostgreSqlLog(options =>
 {
@@ -82,7 +97,6 @@ builder.Services.AddPostgreSqlLog(options =>
 });
 ```
 <hr>
-
 
 ### Middleware
 ```csharp
