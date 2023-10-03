@@ -5,8 +5,8 @@
 #### Install packages
 `dotnet` CLI
 ```
-$ dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
 $ dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
 ```
 #### Program.cs
 ```csharp
@@ -30,8 +30,8 @@ builder.Services.AddSQLiteLog(options =>
 #### Install packages
 `dotnet` CLI
 ```
-$ dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.5
 $ dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.5
 ```
 #### Program.cs
 ```csharp
@@ -54,8 +54,8 @@ builder.Services.AddMSSqlServerLog(options =>
 #### Install packages
 `dotnet` CLI
 ```
-$ dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.5
 $ dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.5
 ```
 #### Program.cs
 ```csharp
@@ -78,8 +78,8 @@ builder.Services.AddMySqlLog(options =>
 #### Install packages
 `dotnet` CLI
 ```
-$ dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.5
 $ dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.5
 ```
 #### Program.cs
 ```csharp
