@@ -17,20 +17,20 @@ public class Logging : ILogging
         if(logOptions.WriteToConsole)
         {
             var writeConsole = _logFactory.CreateLog(LogType.ConsoleLog);
-            _logEvent.LogHandler((s, e) => writeConsole.Write(levelType, e), $"{levelType.ToString()}: {message}");
+            _logEvent.LogHandler((s, e) => writeConsole.Write(levelType, e), $"{levelType.ToString()}: {DateTime.UtcNow.ToString()}    {message}");
         }
       
 
         if (logOptions.WriteToFile == true && !string.IsNullOrEmpty(logOptions.FilePath))
         {
             var writeFile = _logFactory.CreateLog(LogType.FileLog);
-            _logEvent.LogHandler((s, e) => writeFile.Write(logOptions.FilePath, logOptions.FileName, e), $"{levelType.ToString()}: {message}");
+            _logEvent.LogHandler((s, e) => writeFile.Write(logOptions.FilePath, logOptions.FileName, e), $"{levelType.ToString()}: {DateTime.UtcNow.ToString()}    {message}");
         }
 
         if (!string.IsNullOrEmpty(logOptions.ConnectionString))
         {
             var writeDatabase = _logFactory.CreateLog(LogType.DatabaseLog);
-            _logEvent.LogHandler((s, e) => writeDatabase.Write(levelType, e), $"{levelType.ToString()}: {message}");
+            _logEvent.LogHandler((s, e) => writeDatabase.Write(levelType, e), message);
         }
     }
 }

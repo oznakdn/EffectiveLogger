@@ -15,10 +15,10 @@ public class LoggingMiddleware : IMiddleware
     {
         try
         {
-            _log.Information($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
-            _log.Debug($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
-            _log.Fail($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
-            _log.Warning($"{DateTime.Now} - {context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Information($"{context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Debug($"{context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Fail($"{context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
+            _log.Warning($"{context.Request.Method} - {context.Request.Path} - {context.Response.StatusCode}");
 
             await next.Invoke(context);
         }

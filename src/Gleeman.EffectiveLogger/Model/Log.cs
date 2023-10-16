@@ -2,8 +2,8 @@
 
 public class Log
 {
-    public Guid LogId { get; set; }
-    public string LogLevel { get; set; }
-    public DateTime LogDate { get; set; }
+    public Guid Id { get; set; }
+    public string Level { get; set; }
+    public string Date { get; set; }
     public string Message { get; set; }
 }
