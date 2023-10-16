@@ -5,7 +5,7 @@
 #### Install packages
 `dotnet` CLI
 ```
-$ dotnet add package Gleeman.EffectiveLogger --version 2.0.5
+$ dotnet add package Gleeman.EffectiveLogger --version 2.0.6
 $ dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
 ```
 #### Program.cs
@@ -128,13 +128,14 @@ public class LoggingMiddleware : IMiddleware
 }
 ```
 ### Console Screen
-![Console](https://github.com/oznakdn/EffectiveLogger/assets/79724084/3bf0e989-643e-4652-825d-8634d19b75c5)
+![Console](https://github.com/oznakdn/EffectiveLogger/assets/79724084/083fcf05-eace-42b3-a78f-263f8df62245)
 
 ### File Screen
-![File](https://github.com/oznakdn/EffectiveLogger/assets/79724084/186199f3-f36e-4683-8911-823dd70f1d9f)
+![File](https://github.com/oznakdn/EffectiveLogger/assets/79724084/86b40e19-3bf3-4bb2-bc17-bd82ecfadbec)
 
 ### Database Screen
-![Database](https://github.com/oznakdn/EffectiveLogger/assets/79724084/f7235067-10a9-462f-9b24-d44db017b653)
+![Database](https://github.com/oznakdn/EffectiveLogger/assets/79724084/83a72943-55d9-46f7-bce9-b4e28657d8dc)
+
 
 
 
