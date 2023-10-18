@@ -1,12 +1,14 @@
 # Gleeman Effective Logger
 
 
-## Logging to SQLite
+## SQLite
 #### Install packages
-`dotnet` CLI
+`dotnet CLI`
+```csharp
+dotnet add package Gleeman.EffectiveLogger --version 2.0.6
 ```
-$ dotnet add package Gleeman.EffectiveLogger --version 2.0.6
-$ dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
+```csharp
+dotnet add package Gleeman.EffectiveLogger.SQLite --version 2.0.5
 ```
 #### Program.cs
 ```csharp
@@ -26,13 +28,16 @@ builder.Services.AddSQLiteLog(options =>
 
 <hr>
 
-## Logging to MSSQLServer
+## MSSQLServer
 #### Install packages
-`dotnet` CLI
+`dotnet CLI` 
+```csharp
+dotnet add package Gleeman.EffectiveLogger --version 2.0.6
 ```
-$ dotnet add package Gleeman.EffectiveLogger --version 2.0.6
-$ dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.5
+```csharp
+dotnet add package Gleeman.EffectiveLogger.MSSqlServer --version 2.0.5
 ```
+
 #### Program.cs
 ```csharp
 using Gleeman.EffectiveLogger.MSSqlServer.Configurations;
@@ -50,12 +55,14 @@ builder.Services.AddMSSqlServerLog(options =>
 ```
 <hr>
 
-## Logging to MySQL
+## MySQL
 #### Install packages
-`dotnet` CLI
+`dotnet CLI` 
+```csharp
+dotnet add package Gleeman.EffectiveLogger --version 2.0.6
 ```
-$ dotnet add package Gleeman.EffectiveLogger --version 2.0.6
-$ dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.5
+```csharp
+dotnet add package Gleeman.EffectiveLogger.MySQL --version 2.0.5
 ```
 #### Program.cs
 ```csharp
@@ -74,12 +81,14 @@ builder.Services.AddMySqlLog(options =>
 ```
 <hr>
 
-## Logging to PostgreSQL
+## PostgreSQL
 #### Install packages
-`dotnet` CLI
+`dotnet CLI`
+```csharp
+dotnet add package Gleeman.EffectiveLogger --version 2.0.6
 ```
-$ dotnet add package Gleeman.EffectiveLogger --version 2.0.6
-$ dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.5
+```csharp
+dotnet add package Gleeman.EffectiveLogger.PostgreSQL --version 2.0.5
 ```
 #### Program.cs
 ```csharp
@@ -98,7 +107,9 @@ builder.Services.AddPostgreSqlLog(options =>
 ```
 <hr>
 
-### Middleware
+
+
+### USAGE
 ```csharp
 public class LoggingMiddleware : IMiddleware
 {
